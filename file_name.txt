@@ -1,0 +1,30 @@
+Function cal_interest {
+Param($principal, $rate, $years)
+$option=read-host -prompt 'enter s to calculate simple interest or c to calculate compound interest'
+$option.tolower()
+
+Switch($option){
+'s'{
+[double]$interest= ($principal*$rate*$years)/100.0
+return $interest
+
+}
+'c'{
+[double]$interest=$principal*(1+$rate/100) 
+[double]$compound_interest =  [Math]::Pow($interest, $years)
+return $compound_interest
+}
+default{
+write-host 'wrong option'
+}
+}
+}
+#usage
+$principal = Read-Host "Enter Your principal ammount :"
+
+$rate = Read-Host "Enter your rate of interest :"
+
+$years = Read-Host "Enter your number of years :"
+$answer = cal_interest -principal $principal -rate $rate  -years $years
+Write-Host "Your desired result is: $answer"
+
